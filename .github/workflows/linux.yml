@@ -52,7 +52,7 @@ jobs:
           fetch-depth: 0
           token: ${{secrets.SITE_GITHUB_TOKEN}}
       - name: add files to site
-        run: cp -aR upload/* site/packages/
+        run: cp -a upload/* site/packages/
       - name: publish site
         env:
           GIT_COMMITTER_NAME: cli automation
