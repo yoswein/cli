@@ -40,6 +40,7 @@ jobs:
         run: |
           mkdir upload
           for file in *.deb ; do /usr/bin/reprepro --confdir="+b/script" includedeb stable $file ; done
+          /usr/bin/reprepro --confdir="+b/script" copy focal gh
       - name: "Select repo artifacts"
         # Select only final repo artifacts
         # (this makes reprepro runs stateless)
