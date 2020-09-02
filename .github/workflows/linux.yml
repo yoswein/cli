@@ -23,19 +23,6 @@ jobs:
           repo: cli
           tag: latest
           file: .*.deb
-      - name: debug
-        run: ls *.deb
-      - name: get blobxfer
-        uses: i3h/download-release-asset@v1
-        with:
-          owner: azure
-          repo: blobxfer
-          tag: latest
-          file: "blobxfer-1.9.4-linux-x86_64"
-      - name: prepare blobxfer
-        run: |
-          mv blobxfer-1.9.4-linux-x86_64 blobxfer
-          chmod +x blobxfer
       - name: install reprepro
         run: sudo apt-get install -y reprepro
       - name: run reprepro
