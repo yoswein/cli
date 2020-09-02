@@ -38,7 +38,8 @@ jobs:
           echo "Resetting gpg-agent and ingesting passphrase"
           echo "allow-preset-passphrase" > ~/.gnupg/gpg-agent.conf
           gpg-connect-agent RELOADAGENT /bye
-          echo ${{secrets.GPG_PASSPHRASE}} | /usr/lib/gnupg2/gpg-preset-passphrase --preset gh:ppp
+          # should preset be 867DAD5051270B843EF54F6186FA10E3A1D22DC5 or E825D1E44E0B29C2CEED59DA85C4433C78F9AA2A ?
+          echo ${{secrets.GPG_PASSPHRASE}} | /usr/lib/gnupg2/gpg-preset-passphrase --preset 867DAD5051270B843EF54F6186FA10E3A1D22DC5
           echo "Moving on to reprepro..."
           mkdir upload
           for file in *.deb ; do /usr/bin/reprepro --confdir="+b/script" includedeb stable $file ; done
