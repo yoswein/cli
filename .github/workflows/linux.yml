@@ -45,7 +45,6 @@ jobs:
         # (this makes reprepro runs stateless)
         run: cp -a dists/ pool/ upload/
       - name: Checkout pages site
-        if: "!contains(github.ref, '-')" # skip prereleases
         uses: actions/checkout@v2
         with:
           repository: github/cli.github.com
