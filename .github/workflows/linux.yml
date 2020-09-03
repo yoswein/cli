@@ -46,11 +46,8 @@ jobs:
               /usr/bin/reprepro --confdir="+b/script" includedeb $release $file;
             done
           done
-          # TODO this is just temporary
-          /usr/bin/reprepro --confdir="+b/script" copy stable focal gh
       - name: "Select repo artifacts"
-        # Select only final repo artifacts
-        # (this makes reprepro runs stateless)
+        # Select only final repo artifacts (this makes reprepro runs stateless)
         run: cp -a dists/ pool/ upload/
       - name: Checkout pages site
         uses: actions/checkout@v2
