@@ -37,10 +37,17 @@ jobs:
           gpg-connect-agent RELOADAGENT /bye
           echo ${{secrets.GPG_PASSPHRASE}} | /usr/lib/gnupg2/gpg-preset-passphrase --preset 867DAD5051270B843EF54F6186FA10E3A1D22DC5
       - name: run reprepro
+        with:
+          RELEASES: "focal stable"
         run: |
           mkdir upload
-          for file in *.deb ; do /usr/bin/reprepro --confdir="+b/script" includedeb stable $file ; done
-          /usr/bin/reprepro --confdir="+b/script" copy focal gh
+          for release in $RELEASES; do
+            for file in *.deb ; do
+              /usr/bin/reprepro --confdir="+b/script" includedeb $release $file;
+            done
+          done
+          # TODO this is just temporary
+          /usr/bin/reprepro --confdir="+b/script" copy stable focal gh
       - name: "Select repo artifacts"
         # Select only final repo artifacts
         # (this makes reprepro runs stateless)
