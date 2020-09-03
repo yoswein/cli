@@ -37,7 +37,7 @@ jobs:
           gpg-connect-agent RELOADAGENT /bye
           echo ${{secrets.GPG_PASSPHRASE}} | /usr/lib/gnupg2/gpg-preset-passphrase --preset 867DAD5051270B843EF54F6186FA10E3A1D22DC5
       - name: run reprepro
-        with:
+        env:
           RELEASES: "focal stable"
         run: |
           mkdir upload
